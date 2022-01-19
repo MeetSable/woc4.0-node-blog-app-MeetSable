@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        script(src="/javascripts/client.js" type='text/javascript') 
+        link(rel="stylesheet", href="/styles/style.css")
+
+        block head 
+            title Layout
+            div(class='navigation')
+                nav(class='navigation-bar main-body')
+                    a(href="/") 
+                        button(class='nav-button' id='homeBtn') Home
+                    a(href="/add") 
+                        button(class='nav-button' id='addBtn') Create Blog
+            
+
+
+    body 
+        div(class='main-body')
+            block body
+                p this is main layout
+
+        block bottom 
+            footer(class='bottom')
+                div(id='footer-text') 
+                    a(href="https://github.com/MeetSable" class='fotter') My Github Profile
+                    br 
+                    br
+                    a(href="https://github.com/MeetSable/woc4.0-node-blog-app-MeetSable.git" class='fotter') Project Repository
+                    

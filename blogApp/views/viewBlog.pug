@@ -1,0 +1,18 @@
+extends layout
+block prepend head 
+    link(rel="stylesheet", href="/styles/blogView.css")
+    script(src="/javascripts/viewBlog.js" type='text/javascript')
+    title  #{blog.title}
+
+block body
+    img(src=`/banners/${blog.banner}` class='bannerImage' )
+    h1(class='title')= blog.title
+    div(class='created-on') Author: #{blog.authorName}
+    div(class='created-on') Created On: #{blog.createdOn}
+    br
+    div(class='blogText' id='blogText') #{blog.blogText}
+    br
+    br
+    br
+
+        
