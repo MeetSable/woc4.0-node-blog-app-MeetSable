@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000;
 app.set('view engine', 'pug');
 
 app.use(cors());
-app.use(express.static('public'));
+app.use('/', express.static('public'));
 
 
 app.use('/api',require("./routes/blogDB"));
