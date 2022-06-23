@@ -2,7 +2,6 @@
  
 ## How to run server:
 ```
-cd blogApp
 npm install
 npm run server
 ```
