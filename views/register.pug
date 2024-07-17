@@ -1,0 +1,23 @@
+extends layout
+block head
+    title Login
+    link(rel="stylesheet", href="/styles/inputForm.css")
+
+block body
+    form(action="" method="post" enctype="application/json")
+        text(class='def-label-text') Login
+        br
+        br
+        br
+        label(for="username-inp" class="def-label") Username:
+        input(type="text" name="username" id="username-inp" class='single-input' autocomplete="username" required)
+        br
+        label(for="passwd-inp" class="def-label") Password:
+        input(type="password" name="passwd" id="passwd-inp" class='single-input' required)
+        br
+        label(for="newUser" class='def-label') Check this to register as new user
+        input(type="checkbox" id="newUser" name="newUser")
+        br
+        br
+        button(type="submit" class="pushable")
+            span(class="front") Register

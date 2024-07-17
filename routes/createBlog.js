@@ -17,7 +17,7 @@ const upload = multer({storage: storage});
 const createBlogRouter = express.Router();
 
 createBlogRouter.get('/',function(req,res){
-        res.render('createBlog');
+        res.render('createBlog', {loggedin : req.session.loggedin, username : req.session.username});
     });
 createBlogRouter.post('/', upload.single('bannerImage'),function(req,res){
         let db_connect = dbo.getDb();
@@ -30,7 +30,7 @@ createBlogRouter.post('/', upload.single('bannerImage'),function(req,res){
         if (req.body.bannerFlag == 'checked'){
             newObj = {
                 title : req.body.title,
-                authorName : req.body.authorName,
+                authorName : req.session.username,
                 blogText : req.body.blogText,
                 blogGist : req.body.gistOfBlog,
                 banner : req.file.filename,
@@ -39,7 +39,7 @@ createBlogRouter.post('/', upload.single('bannerImage'),function(req,res){
         }else{
             newObj = {
                 title : req.body.title,
-                authorName : req.body.authorName,
+                authorName : req.session.username,
                 blogText : req.body.blogText,
                 blogGist : req.body.gistOfBlog,
                 banner : 'default_banner.jpg',

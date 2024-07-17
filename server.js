@@ -1,16 +1,38 @@
 const express = require("express");
+const session = require('express-session');
+var bodyparser = require('body-parser')
+
+
 const app = express();
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
+const helmet = require("helmet")
+
 app.set('view engine', 'pug');
 
-app.use('/', express.static('public'));
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 
+app.use('/', express.static('public'));
+// app.use(helmet.frameguard({ action: 'sameorigin' }));
+
+app.use(bodyparser.urlencoded({ extended: true }))
+app.use(bodyparser.json())
 
 app.use('/api',require("./routes/blogDB"));
 app.use('/', require('./routes/index'));
 app.use('/add', require('./routes/createBlog'));
+app.use('/register', require('./routes/register'));
+app.use('/myBlog', require('./routes/myBlog'));
+app.get('/logout', function(req,res){
+  req.session.loggedin = false;
+  req.session.username = null;
+  res.redirect('/');
+});
 
 app.use(function(req, res, next) {
   res.status(404);

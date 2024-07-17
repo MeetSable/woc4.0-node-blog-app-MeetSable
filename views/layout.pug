@@ -10,15 +10,25 @@ html(lang="en")
 
         block head 
             title Layout
-            div(class='navigation')
-                nav(class='navigation-bar main-body')
-                    a(href="/") 
-                        button(class='nav-button' id='homeBtn') Home
-                    a(href="/add") 
+        div(class='navigation')
+            nav(class='navigation-bar main-body')
+                a(href="/") 
+                    button(class='nav-button' id='homeBtn') Home
+                if loggedin == true
+                    a(href="/add")
                         button(class='nav-button' id='addBtn') Create Blog
-            
-
-
+                    a(href="/myBlog")
+                        button(class='nav-button' id='myBlog') My Blogs 
+                    a(href="/logout")
+                        button(class='nav-button-right' id='logout') Logout
+                    a(href="/deleteAcc")
+                        button(class='pushable' id='deleteAcc' style='padding-top:0px') 
+                            span(class='front') Delete Account
+                else
+                    a(href="/register")
+                        button(class='nav-button-right' id='register' ) Register
+        if loggedin == true 
+            div(class='main-body' style='font-size: 25px; padding:0px 0px 30px 20px; font-weight:bolder') Username: #{username}
     body 
         div(class='main-body')
             block body

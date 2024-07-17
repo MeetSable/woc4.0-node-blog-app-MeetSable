@@ -50,6 +50,28 @@ body{
     border-style: solid; */
 }
 
+.nav-button-right{
+    color: white;
+    font-size: 25px;
+    font-weight: bolder;
+    background-color:transparent;
+    border-style: none;
+    padding: 0.2in;
+    float: right;
+    transition: 0.3s;
+}
+
+.nav-button-right:hover:enabled{
+    background-color: #3D4042;
+}
+
+.nav-button-right:disabled{
+    color:#ADF5F5;
+    /* border-color: #4080FF;
+    border-width: 2px;
+    border-style: solid; */
+}
+
 .no-blog{
     margin-left: 10px;
     font-size: 30px;

@@ -3,6 +3,10 @@
     filter: brightness(70%);
 }
 
+.def-label-text{
+    font-size: 25px;
+}
+
 label{
     display: inline-block;
 }

@@ -3,20 +3,14 @@ block head
     title Create Blog
     script(src="/javascripts/inputForm.js" type='text/javascript') 
     link(rel="stylesheet", href="/styles/inputForm.css")
-    div(class='navigation')
-        nav(class='navigation-bar main-body')
-            a(href="/")
-                button(class='nav-button' id='homeBtn') Home
-            a(href="/add")
-                button(class='nav-button' id='addBtn' disabled) Create Blog
 
 block body
     form(action="" method="post" enctype="multipart/form-data")
         label(for="title-inp" class='def-label')  Blog Title:
         input(type="text" name="title" id='title-inp' class='single-input' required) 
         br
-        label(for="author-inp" class='def-label')  Auther Name:
-        input(type="text" name="authorName" id='author-inp' class='single-input' required) 
+        //- label(for="author-inp" class='def-label')  Auther Name:
+        //- input(type="text" name="authorName" id='author-inp' class='single-input' required) 
         br
         label(for='blogText' class='def-label') Blog: 
         br

@@ -2,25 +2,26 @@ extends layout
 block head 
 
     link(rel="stylesheet", href="/styles/gridStyle.css")
+    link(rel="stylesheet", href="/styles/inputForm.css")
 
-    script(src="/javascripts/homePage.js" type='/text/javascript') .
+    script(src="/javascripts/homePage.js" type='text/javascript') .
         var blogs = {#{blogs}}
 
     title Home
-    div(class='navigation')
-        nav(class='navigation-bar main-body')
-            a(href="/")
-                button(class='nav-button' id='homeBtn' disabled) Home
-            a(href="/add")
-                button(class='nav-button' id='addBtn') Create Blog
+
 block body 
     div(class='grid-container')
         if blogs.length == 0
             div(class='no-blog') no blogs :(
         else
             each blog in blogs
-                div(class='grid-item')
-                    a(href=`blogs/${blog._id}`): img(src=`banners/${blog.banner}` class='cropped')
-                    a(href=`blogs/${blog._id}` class='blog-link') #{blog.title}
-                    div(class='blog-gist')= blog.blogGist
+                    div(class='grid-item')
+                        a(href=`blogs/${blog._id}`): img(src=`banners/${blog.banner}` class='cropped')
+                        a(href=`blogs/${blog._id}` class='blog-link') #{blog.title}
+                        div(class='blog-gist')= blog.blogGist
+                        if username != null
+                            if username == blog.authorName
+                                a(href='/delete/'+blog._id)
+                                    button(type="submit" class='pushable' style='transform:scale(0.5,0.5) translate(-35%, -35%)')
+                                        span(class='front') Delete Blog?
     
