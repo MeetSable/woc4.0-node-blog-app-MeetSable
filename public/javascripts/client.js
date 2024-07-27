@@ -1,4 +1,6 @@
-window.onload = function(){
-    const homeBtn = document.getElementById('homeBtn');
-    const addBtn = document.getElementById('addBtn');
-};
+//window.onload = function(){
+//    if(window.self == window.top) {
+//         document.documentElement.style.display = 'block'; }
+//    else {
+//    window.top.location = window.self.location; }
+//};

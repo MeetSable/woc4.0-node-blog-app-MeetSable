@@ -7,7 +7,20 @@ const app = express();
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.PORT || 5000;
 
-const helmet = require("helmet")
+// ----------Countermeasure-----------------
+//app.use((req, res, next)=>{
+//    res.setHeader(
+//        'Report-To',
+//        '{"group":"csp-endpoint","max_age":10886400,"endpoints":[{"url":"http://www.myblogapp.com/__cspreport__"}],"include_subdomains":true}'
+//    );
+//    res.setHeader(
+//        'Content-Security-Policy',
+//        "frame-ancestors 'self';report-to csp-endpoint; report-uri /__cspreport__;"
+//    );
+//    next();
+//});
+// ----------Countermeasure-----------------
+
 
 app.set('view engine', 'pug');
 
@@ -18,10 +31,17 @@ app.use(session({
 }));
 
 app.use('/', express.static('public'));
-// app.use(helmet.frameguard({ action: 'sameorigin' }));
 
 app.use(bodyparser.urlencoded({ extended: true }))
-app.use(bodyparser.json())
+app.use(
+  bodyparser.json({
+    type: [
+      'application/json',
+      'application/csp-report',
+      'application/reports+json',
+    ],
+  })
+);
 
 app.use('/api',require("./routes/blogDB"));
 app.use('/', require('./routes/index'));
@@ -32,6 +52,10 @@ app.get('/logout', function(req,res){
   req.session.loggedin = false;
   req.session.username = null;
   res.redirect('/');
+});
+
+app.post('/__cspreport__', (req, res) => {
+  console.log(req.body);
 });
 
 app.use(function(req, res, next) {
